@@ -1,0 +1,2 @@
+--enable-shared --disable-checkpointing --enable-fortran=yes --enable-cxx --enable-threads=multiple --with-pthread-package=posix --with-blcr=/usr<% -%>
+<% if @slurm != '' -%>--with-pmi=slurm --with-pm=no --with-slurm=<%= @slurm %><% end -%>

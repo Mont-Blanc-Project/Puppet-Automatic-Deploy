@@ -1,0 +1,6 @@
+--cflags=<%= @CFLAGS -%> -D c -DWALL --shared -Fa alg '-fPIC' -Fa ac <%= @CFLAGS -%> -Fa if <%= @CFLAGS -%> -t <%= @processorcount -%> --with-netlib-lapack-tarfile=<%= @LAPACK_TAR -%><% -%>
+<% if @archdef == '' -%> 
+ -Si archdef 0<% -%>
+<% else -%>
+ -Ss Addir <%= @archdef -%><% -%>
+<%end-%>

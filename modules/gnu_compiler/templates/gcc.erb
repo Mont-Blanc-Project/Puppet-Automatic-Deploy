@@ -1,0 +1,24 @@
+#%Module1.0
+proc ModulesHelp { } {
+    global version prefix
+
+    puts stderr "\tGNU Compiler Suite <%= @GCC_VER %> (c++, cpp, g++, gcc, gcc-ar, gcc-nm, gcc-ranlib gcov, gfortran)"
+}
+
+module-whatis "GNU Compiler Suite <%= @GCC_VER %> (c++, cpp, g++, gcc, gcc-ar, gcc-nm, gcc-ranlib gcov, gfortran)"
+
+module-verbosity {on}
+
+conflict gcc
+
+if { [module-info mode] != "whatis" } {
+   puts stderr "[module-info mode] [module-info name] (PATH, MANPATH, LD_LIBRARY_PATH)"
+}
+
+set		topdir		<%= @GCC_PREFIX %>
+set		version		<%= @GCC_VER %>
+
+prepend-path    PATH            $topdir/bin
+prepend-path    LD_LIBRARY_PATH $topdir/lib
+prepend-path	LD_RUN_PATH		$topdir/lib
+prepend-path    MANPATH         $topdir/share/man

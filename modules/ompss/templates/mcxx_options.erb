@@ -1,0 +1,4 @@
+--enable-ompss --with-nanox=<%= @NANOX_PREFIX -%><%= -%>
+<% if @mpi != '' -%> 
+ --with-mpi=<%= @mpi -%><% -%>
+<%end-%>

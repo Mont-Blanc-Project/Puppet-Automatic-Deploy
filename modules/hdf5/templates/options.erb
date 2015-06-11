@@ -1,0 +1,4 @@
+--enable-fortran --enable-fortran2003 --enable-cxx --enable-shared --enable-production<% -%>
+<% if @mpi != '' -%>
+	CC=<%= @mpi %> --enable-parallel<% -%>
+<%end-%>

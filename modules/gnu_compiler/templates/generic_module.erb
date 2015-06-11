@@ -1,0 +1,42 @@
+#%Module1.0
+
+###############################
+# File Managed by Puppet      #
+# CHANGE AT YOUR OWN RISK     #
+###############################
+
+proc ModulesHelp { } {
+    global version prefix
+
+	puts stderr "\t<%= @APP_NAME %> <%= @APP_VER %> <%= @APP_DESC %>"
+}
+
+module-whatis "<%= @APP_NAME %> <%= @APP_VER %> <%= @APP_DESC %>"
+
+module-verbosity {on}
+
+<%# Default = himself -%>
+conflict <%= @APP_CONFLICTS %>
+
+if { [module-info mode] != "whatis" } {
+   puts stderr "[module-info mode] [module-info name] (PATH, MANPATH, LD_LIBRARY_PATH)"
+}
+
+set		topdir		<%= @APP_PREFIX %>
+<% if @APP_VER != '' -%>
+set		version		<%= @APP_VER %>
+<% end -%>
+
+<% if File.directory?(@APP_PREFIX+"/bin") -%>
+prepend-path    PATH            $topdir/bin
+<% end -%>
+<% if File.directory?(@APP_PREFIX+"/lib") -%>
+prepend-path    LD_LIBRARY_PATH $topdir/lib
+prepend-path	LD_RUN_PATH		$topdir/lib
+<% end -%>
+<% if File.directory?(@APP_PREFIX+"/share/man") -%>
+prepend-path    MANPATH         $topdir/share/man
+<% end -%>
+################################
+# End of Module File           #
+################################

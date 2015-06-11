@@ -1,0 +1,6 @@
+<% if @opencl != '' -%> 
+ --with-opencl-include=<%= @opencl -%>/include --with-opencl-lib=<%= @opencl -%>/lib<% -%>
+<%end-%>
+<% if @extrae != '' -%>
+ --with-extrae=<%= @extrae -%><% -%>
+<%end-%>

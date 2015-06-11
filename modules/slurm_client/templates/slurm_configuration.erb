@@ -1,0 +1,82 @@
+ControlMachine=<%= @controller_hostname -%>
+ControlAddr=<%= @controller_ip_address -%>
+
+AuthType=auth/munge
+CacheGroups=0
+
+CryptoType=crypto/openssl
+
+EnforcePartLimits=YES
+
+JobCredentialPrivateKey=<%= @sysconfdir -%>/private.key
+JobCredentialPublicCertificate=<%= @sysconfdir -%>/public.key
+
+KillOnBadExit=1
+
+MpiDefault=none
+
+PrivateData=accounts,usage
+ProctrackType=proctrack/linuxproc
+
+RebootProgram=/sbin/reboot
+ReturnToService=0
+
+SlurmctldPidFile=<%= @slurmdir -%>/var/slurmctld.pid
+SlurmctldPort=6817
+SlurmdPidFile=<%= @slurmdir -%>/var/slurmd.pid
+SlurmdPort=6818
+SlurmdSpoolDir=<%= @slurmdir -%>/var/slurm
+SlurmUser=slurm
+
+SlurmctldLogFile=<%= @slurmdir -%>/var/log/slurmctld.log
+SlurmdLogFile=<%= @slurmdir -%>/var/log/slurm_%n.log
+
+StateSaveLocation=<%= @slurmdir -%>/var/slurm
+SwitchType=switch/none
+TaskPlugin=task/affinity
+TaskPluginParam=Sched
+
+PrologFlags=Alloc
+
+InactiveLimit=0
+MinJobAge=300
+
+SlurmdTimeout=240
+WaitTime=0
+
+MessageTimeout=60
+
+FastSchedule=1
+SchedulerType=sched/backfill
+SchedulerPort=7321
+SelectType=select/linear
+
+AccountingStorageHost=<%= @accounting_hostname -%>
+AccountingStorageLoc=<%= @slurmdir -%>/var/log/job_acct.log
+AccountingStorageType=accounting_storage/slurmdbd
+
+ClusterName=<%= @clustername -%>
+
+JobCompLoc=<%= @slurmdir -%>/var/log/jobs_complete.log
+JobCompType=jobcomp/filetxt
+JobAcctGatherFrequency=30
+JobAcctGatherType=jobacct_gather/linux
+
+SlurmctldDebug=info
+SlurmdDebug=info
+
+BatchStartTimeout=30
+
+#Prolog=<%= @sysconfdir -%>/scripts/prolog.sh
+#Epilog=<%= @sysconfdir -%>/scripts/epilog.sh
+
+CpuFreqDef=Low
+
+TopologyPlugin=topology/none
+RoutePlugin=route/default
+
+#MailProg=/usr/bin/mail
+
+NodeName=<%= @basename -%>-[<%= @init_node_number -%>-<%= @end_node_number -%>] Socket=<%= @nSockets -%> CoresPerSocket=<%= @nProcessors -%> ThreadsPerCore=1 RealMemory=<%= @memory -%> State=UNKNOWN
+
+PartitionName=default Nodes=<%= @basename -%>-[<%= @init_node_number -%>-<%= @end_node_number -%>] Default=YES MaxTime=10:00:00 State=UP Priority=0 Shared=EXCLUSIVE

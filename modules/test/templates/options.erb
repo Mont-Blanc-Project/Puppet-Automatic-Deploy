@@ -1,0 +1,11 @@
+--enable-posix-clock --without-dyninst --enable-sampling --enable-openmp-gnu<% -%>
+<% if @unwind != '' -%> --with-unwind=<%= @unwind -%>
+<% else -%> --without-unwind<% end -%>
+<% if @papi != '' -%> --with-papi=<%= @papi -%>
+<% else -%> --without-papi<% end -%>
+<% if @mpi != '' -%> --with-mpi=<%= @mpi -%>
+<% else -%> --without-mpi<% end -%>
+<% if @opencl != '' -%> --with-opencl=<%= @opencl %> --with-opencl-headers=<%= @opencl %>/include --with-opencl-libs=<%= @opencl %>/lib<% end -%>
+<% if @boost != '' -%> --with-boost=<%= @boost %><% end -%>
+<% if @fft != '' -%> --with-fft=<%= @fft %><% end -%>
+

@@ -1,0 +1,4 @@
+--enable-shared --disable-wrapper-rpath --enable-mpi-thread-multiple<% -%>
+<% if @slurm != '' -%> 
+ --with-slurm --with-pmi=<%= @slurm %><% -%>
+<%end-%>
