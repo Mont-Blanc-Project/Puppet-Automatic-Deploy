@@ -1,0 +1,2 @@
+# puppet
+Configuration management files
